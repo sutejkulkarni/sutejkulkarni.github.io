@@ -1,0 +1,215 @@
+body{
+        color: black;
+        font-family:  'Montserrat','verdana','Arial Narrow', Arial, sans-serif;
+        overflow-x: hidden;
+    position: relative;
+    transition: background .2s linear;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga" on;
+    font-feature-settings: "liga" on;
+    -moz-font-feature-settings: "liga" on;
+}
+.nav{
+    position: absolute;
+    top: 2px;
+    left: 450px;
+        border-radius: 8px;
+        font-size: 0;
+        box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+	background: #5c9eb7;
+    word-spacing: 30px;
+    text-align: center;
+    border-radius: 15px;
+    padding-top: 0px;
+    font-size: 16px;
+    transition: 0.2s ease-in-out;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0.2s;
+    transition-property: all;
+    display: flex;
+    align-items: center;
+}
+nav a{
+	font-size: 15px;
+	text-transform: uppercase;
+	color: rgb(12, 12, 12);
+	text-decoration: none;
+	line-height: 50px;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	text-align: center;
+}
+nav .animation{
+	position: absolute;
+	height: 100%;
+	/* height: 5px; */
+	top: 0;
+	/* bottom: 0; */
+	z-index: 0;
+	background-color: #F9F9F9;
+	border-radius: 8px;
+	transition: all 0.5s ease 0s;
+    opacity: 1;
+}
+nav a:nth-child(1){
+	width: 100px;
+}
+nav .start-home, a:nth-child(1):hover~.animation{
+	width: 100px;
+	left: 0;
+}
+nav a:nth-child(2){
+	width: 110px;
+}
+nav a:nth-child(2):hover~.animation{
+	width: 110px;
+	left: 100px;
+}
+nav a:nth-child(3){
+	width: 100px;
+}
+nav a:nth-child(3):hover~.animation{
+	width: 100px;
+	left: 210px;
+}
+nav a:nth-child(4){
+	width: 160px;
+}
+nav a:nth-child(4):hover~.animation{
+	width: 160px;
+	left: 310px;
+}
+.nav1{
+    position: absolute;
+    top: 10px;
+    left: 420px;
+    width: 490px;
+    align-items: center;
+    border-radius: 10px;
+    transition: .5s ease-in-out 0s;
+    opacity: 1;
+}
+#myVideo{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    transition: 2s;
+    animation-delay: 2s;
+}
+img{
+    width: 400px;
+    height: 40px;
+}
+p{
+    text-align: center;
+    position: relative;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-family: copperplate, Geneva, Tahoma, sans-serif
+}
+.me{
+    position: relative;
+    top: 300px;
+    left: 140px;
+    width: 80%;
+    height: 500px;
+    opacity: 1;
+    border-radius: 50px;
+    box-shadow: 1px 2px 1px 2px rgba(56, 53, 53, 0.69);
+    text-align: center;
+}
+.text1{
+    opacity: 1;
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    left: 40%;
+    font-family:   "Trirong",Verdana, sans-serif;
+    text-align: center;
+}
+h1{
+    font-family: 'sacramento',Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 70px;
+    position: absolute;
+    top: 50px;
+    left: 430px;
+    align-items: center;
+}
+h3{
+    font-family: "sacramento",Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+    position: absolute;
+    top: 160px;
+    left: 450px;
+    align-items: center;
+}
+.vid1{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40%;
+    height: 100%;
+}
+#vide{
+    margin-top: 60px;
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    width: 60%;
+    height: 80%;
+}
+.oneline{
+    font-family: "Montserrat",Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+    top: 280px;
+    left: 30px;
+    align-items: center;
+}
+.bottom{
+    border-top: 1px solid black;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 900px;
+    align-items: center;
+
+}
+h4{
+    color: black;
+    font-family: "Montserrat",Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    align-items: center;
+    word-spacing: 60px;
+    position: absolute;
+    top: 50px;
+    left: 37%;
+}
+h5{
+    position: absolute;
+    top: 100px;
+    left: 47%;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
