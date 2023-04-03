@@ -129,27 +129,26 @@ a{
     width: 60%;
     height: 100%;
     position: absolute;
-    top: 0px;
-    left: 40%;
+    bottom: 20px;
+    left: 36%;
     font-family:   "Montserrat thin",Verdana, sans-serif;
     text-align: center;
-    font-size: 30px;
-    padding-top: 20px;
+    font-size: 10px;
 }
 h1{
-    font-family: 'sacramento',Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 70px;
     position: absolute;
     top: 50px;
-    left: 430px;
+    left: 420px;
     align-items: center;
 }
 h3{
-    font-family: "sacramento",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Lucida Sans Unicode' ,Verdana, Geneva, Tahoma, sans-serif;
     font-size: 40px;
     position: absolute;
     top: 160px;
-    left: 450px;
+    left: 410px;
     align-items: center;
 }
 .vid1{
@@ -160,7 +159,7 @@ h3{
     height: 100%;
 }
 .oneline{
-    font-family: "Montserrat",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Montserrat Thin',Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
     top: 280px;
     left: 30px;
@@ -220,22 +219,22 @@ h5{
     width: 60%;
     height: 100%;
     position: inherit;
-    top: 120px;
+    top: 70px;
     left: 40%;
     text-align: left;
-    font-family: "sacramento","Montserrat Thin",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 22px;
  }
  h6{
-    font-family: "Sacramento",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     color: black;
     position: absolute;
-    bottom: 280px;
+    bottom: 300px;
     left: 35%;
     font-size: 52px;
  }
  h2{
-    font-family: "Sacramento",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Trebuchet MS',Verdana, Geneva, Tahoma, sans-serif;
     color: black;
     position: absolute;
     top: 60px;
@@ -243,9 +242,113 @@ h5{
     font-size: 52px;
  }
  .oneline1{
-    font-family: "Montserrat",Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Montserrat Thin",Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
     top: 200px;
     left: 30px;
     align-items: center;
+}
+.img1{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 300px;
+    left: 100px;
+}
+.i1{
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.img2{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 300px;
+    left: 490px;
+}
+.img3{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 300px;
+    right: 100px;
+}
+.img4{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 800px;
+    left: 100px;
+}
+.img5{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 800px;
+    left: 490px;
+}
+.img6{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 800px;
+    right: 100px;
+}
+.img9{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1300px;
+    left: 100px;
+}
+.img10{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1300px;
+    left: 490px;
+}
+.img11{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1300px;
+    right: 100px;
+}
+.img12{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1800px;
+    left: 100px;
+}
+.img13{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1800px;
+    left: 490px;
+}
+.img14{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 1800px;
+    right: 100px;
+}
+.bottom1{
+    border-top: 1px solid black;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 2300px;
+    align-items: center;
+
+}
+#i21{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
 }
