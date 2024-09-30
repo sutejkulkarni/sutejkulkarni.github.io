@@ -2,30 +2,275 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sutej Kulkarni ⚡</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="icon" href="images/favicon (1).ico">
-    <script>
-        var vid=document.getElementById("myVideo");
-        vid.playbackRate = 0.5;
-    </script>
+    <title>Image Capture and Valuation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <style>
+        #image {
+            max-width: 100%;
+            max-height: 400px;
+            display: none;
+        }
+        #profile-pic-preview {
+            display: none;
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        #camera-video {
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
 </head>
 <body>
-    <video autoplay muted loop id="myVideo" src="images/gradient-131767.mp4"></video>
-    
-    <div class="nav">
-        <div class="h">
-            <a href="">Welcome!</a> 
-        </div> 
-        <div class="sutej">
-            <a href="index.html"><p>Hi, I am Sutej Kulkarni</p></a>
-            <img class="img" src="https://www.seanhalpin.xyz/hp/star-2.svg" alt="">
+
+<div class="container">
+    <div class="row mt-5">
+        <!-- Camera and Capture Section -->
+        <div class="col-md-6">
+            <h3>Capture Image</h3>
+            <button type="button" class="btn btn-primary mt-3" id="startCameraButton">Start Camera</button>
+            <button type="button" class="btn btn-success mt-3" id="captureImageButton" style="display: none;">Capture Image</button>
+            <video id="camera-video" autoplay playsinline></video>
+        </div>
+
+        <!-- Image Crop Section -->
+        <div class="col-md-6">
+            <h3>Crop Image</h3>
+            <img id="image" alt="Cropped Image Preview">
+            <img id="profile-pic-preview" alt="Final Cropped Image Preview">
         </div>
     </div>
-    <div class="butn">
-        <button id="btn"><a href="home.html">➪</a></button>
+</div>
+
+<!-- Modal for Image Cropping -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Crop Your Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="cropper-container" class="text-center">
+                    <img id="image" src="" alt="Image Preview" style="max-width: 100%; max-height: 500px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-button" class="btn btn-primary">Crop and Submit</button>
+            </div>
+        </div>
     </div>
+</div>
+
+<!-- Form Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Enter Additional Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm">
+                    <div class="mb-3">
+                        <label for="purityInput" class="form-label">Purity</label>
+                        <input type="text" class="form-control" id="purityInput" placeholder="Enter Purity">
+                    </div>
+                    <div class="mb-3">
+                        <label for="weightInput" class="form-label">Weight</label>
+                        <input type="text" class="form-control" id="weightInput" placeholder="Enter Weight">
+                    </div>
+                    <div class="mb-3">
+                        <label for="typeInput" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="typeInput" placeholder="Enter Type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="hallmarkInput" class="form-label">Hallmark</label>
+                        <input type="text" class="form-control" id="hallmarkInput" placeholder="Enter Hallmark">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="formSubmitBtn" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Valuation Modal -->
+<div class="modal fade" id="valuationModal" tabindex="-1" aria-labelledby="valuationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="valuationModalLabel">Valuation Result</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="valuationResult" class="lead"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap, jQuery, and Cropper.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<script>
+    let cropper;
+    const startCameraButton = document.getElementById('startCameraButton');
+    const captureImageButton = document.getElementById('captureImageButton');
+    const imageModal = new bootstrap.Modal(document.getElementById('imageModal'), {});
+    const cropButton = document.getElementById('crop-button');
+    const imageElement = document.getElementById('image');
+    const profilePicPreview = document.getElementById('profile-pic-preview');
+    const videoElement = document.getElementById('camera-video');
+    let cameraStream;
+
+    // Start the camera and show video preview
+    async function startCamera() {
+        try {
+            cameraStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoElement.srcObject = cameraStream;
+            videoElement.style.display = 'block';
+            startCameraButton.style.display = 'none'; // Hide start camera button
+            captureImageButton.style.display = 'inline-block'; // Show capture button
+        } catch (error) {
+            console.error("Error accessing camera: ", error);
+        }
+    }
+
+    // Stop the camera
+    function stopCamera() {
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraStream = null;
+        }
+        videoElement.style.display = 'none';
+        captureImageButton.style.display = 'none'; // Hide capture button
+        startCameraButton.style.display = 'inline-block'; // Show start camera button again
+    }
+
+    // Capture image from video stream
+    function captureImage() {
+        const canvas = document.createElement('canvas');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL('image/jpeg'); // Return the image as a data URL
+    }
+
+    // Handle starting the camera
+    startCameraButton.addEventListener('click', function() {
+        startCamera();
+    });
+
+    // Handle capturing image from the camera
+    captureImageButton.addEventListener('click', function() {
+        if (!cameraStream) {
+            alert("Please start the camera first.");
+            return;
+        }
+        const capturedImageURL = captureImage();
+        imageElement.src = capturedImageURL;
+        imageElement.style.display = 'block';
+        imageModal.show(); // Show modal for cropping
+        stopCamera(); // Stop the camera after capturing the image
+
+        if (cropper) {
+            cropper.destroy(); // Destroy any previous cropper instance
+        }
+
+        // Initialize Cropper.js with the captured image
+        cropper = new Cropper(imageElement, {
+            aspectRatio: 4 / 3,
+            viewMode: 1,
+            background: false,
+            guides: true,
+            highlight: false,
+            dragMode: 'none',
+            autoCropArea: 1,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            zoomable: false,
+            minCropBoxWidth: 50,
+            minCropBoxHeight: 50,
+        });
+    });
+
+    // Handle cropping and submission of the cropped image
+    cropButton.addEventListener('click', function() {
+        if (cropper) {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                profilePicPreview.src = url; // Display the cropped preview
+                profilePicPreview.style.display = 'block';
+                imageModal.hide(); // Hide the cropping modal
+                showFormModal(); // Show form modal for additional details
+            });
+        }
+    });
+
+    // Show form modal after cropping
+    function showFormModal() {
+        $('#formModal').modal('show');
+    }
+
+    // Show valuation result after submitting form
+    function handleGoldValuation(success, loanValue) {
+        const valuationResult = document.getElementById('valuationResult');
+        const valuationModal = new bootstrap.Modal(document.getElementById('valuationModal'));
+
+        if (success) {
+            valuationResult.innerHTML = `You are eligible for a loan value of: <strong>${loanValue}</strong>`;
+        } else {
+            valuationResult.innerHTML = `Couldn't get a valuation. Please continue with login or locate us for assistance.`;
+        }
+
+        valuationModal.show();
+    }
+
+    // Handle form submission
+    document.getElementById('formSubmitBtn').addEventListener('click', function() {
+        const purity = document.getElementById('purityInput').value;
+        const weight = document.getElementById('weightInput').value;
+        const type = document.getElementById('typeInput').value;
+        const hallmark = document.getElementById('hallmarkInput').value;
+
+        const formData = {
+            purity: purity,
+            weight: weight,
+            type: type,
+            hallmark: hallmark
+        };
+
+        fetch('/get-valuation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                handleGoldValuation(true, data.loanValue); // Show the valuation in modal
+            } else {
+                handleGoldValuation(false); // Handle valuation failure
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching valuation:', error);
+            handleGoldValuation(false);
+        });
+
+        $('#formModal').modal('hide');
+    });
+</script>
+
 </body>
 </html>
